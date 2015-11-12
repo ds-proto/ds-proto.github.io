@@ -33,3 +33,12 @@ with D3 easier.
 - [Skeleton](http://getskeleton.com/): a minimal CSS boilerplate.
 
 This is fairly subject to change.
+
+## Datasets
+
+The datasets should be stored in the
+[data](https://github.com/ds-proto/ds-proto.github.io/tree/master/data) folder
+in the repository. The primary one we're interested in is the
+[2014 US Aid dataset](https://github.com/ds-proto/ds-proto.github.io/blob/master/data/us_aid.csv)
+which can also be found on the
+[Foreign Aid Explorer](http://explorer.usaid.gov/).
