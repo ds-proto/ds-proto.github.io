@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>We can analyze everything</title>
+  <title>US Foreign Expenditure Analysis</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -39,28 +39,9 @@
   <div class="container">
     <div class="row">
       <div style="margin-top: 25%">
-        <h4>Charts!</h4>
-        <p>Plot everything.</p>
 
+        <h4>Where the US Spent Money on Foreign Aid in 2014</h4>
 
-
-
-        <div id="chart1">
-        </div>
-        <script type="text/javascript">
-         var svgBar = dimple.newSvg("#chart1", 800, 600);
-         var data = [
-             { "Word":"Hello", "Awesomeness":2000 },
-             { "Word":"World", "Awesomeness":3000 }
-         ];
-         var chart = new dimple.chart(svgBar, data);
-         chart.addCategoryAxis("x", "Word");
-         chart.addMeasureAxis("y", "Awesomeness");
-         chart.addSeries(null, dimple.plot.bar);
-         chart.draw();
-        </script>
-
-        <h3>US Government Foreign Aid Expenditure in 2014</h3>
         <div id="chart2">
         </div>
         <script type="text/javascript">
@@ -75,50 +56,56 @@
          });
         </script>
 
+        <h4>The US Response to Foreign Education Need</h4>
         <div id="chart3">
         </div>
         <script type="text/javascript">
          var svgScatter = dimple.newSvg("#chart3", 800, 500);
          d3.csv("data/merged_aid.csv", function (data) {
              var myChart = new dimple.chart(svgScatter, data);
-             myChart.addMeasureAxis("x", "2012 Mean years of schooling");
-             myChart.addMeasureAxis("y", "Education");
+             var x = myChart.addMeasureAxis("x", "2012 Mean years of schooling");
+             var y = myChart.addMeasureAxis("y", "Education");
              myChart.addSeries(["Country","Region"], dimple.plot.bubble);
              myChart.addLegend(250, 10, 500, 50, "right");
              myChart.draw();
+             y.titleShape.text("Money Spent on Education in 2014 ($)");
          });
         </script>
 
+        <h4>The US Response to Foreign Health Need</h4>
         <div id="chart4">
         </div>
         <script type="text/javascript">
          var svgHealth = dimple.newSvg("#chart4", 800, 500);
          d3.csv("data/merged_aid.csv", function (data) {
              var myChart = new dimple.chart(svgHealth, data);
-             x = myChart.addMeasureAxis("x", "2013 Life Expectancy at Birth (years)");
+             var x = myChart.addMeasureAxis("x", "2013 Life Expectancy at Birth (years)");
              x.overrideMin = 40;
              x.overrideMax = 90;
-             y = myChart.addMeasureAxis("y", "Health and Population");
+             var y = myChart.addMeasureAxis("y", "Health and Population");
              myChart.addSeries(["Country","Region"], dimple.plot.bubble);
              myChart.addLegend(250, 10, 500, 50, "right");
              myChart.draw();
+             y.titleShape.text("Money Spent on Health and Population in 2014 ($)");
          });
         </script>
 
 
+        <h4>The US Response to Foreign Economic Need</h4>
         <div id="chart5">
         </div>
         <script type="text/javascript">
          var svgEconomic = dimple.newSvg("#chart5", 800, 500);
          d3.csv("data/merged_aid.csv", function (data) {
              var myChart = new dimple.chart(svgEconomic, data);
-             x = myChart.addMeasureAxis("x", "2013 Gross national income (GNI) per capita (2011 PPP $)");
+             var x = myChart.addMeasureAxis("x", "2013 Gross national income (GNI) per capita (2011 PPP $)");
              /* x.overrideMin = 40;
                 x.overrideMax = 90; */
-             y = myChart.addMeasureAxis("y", "Economic Growth");
+             var y = myChart.addMeasureAxis("y", "Economic Growth");
              myChart.addSeries(["Country","Region"], dimple.plot.bubble);
              myChart.addLegend(250, 10, 500, 50, "right");
              myChart.draw();
+             y.titleShape.text("Money Spent on Economic Growth in 2014 ($)");
          });
         </script>
       </div>
