@@ -134,6 +134,63 @@
          });
         </script>
 
+        <h5></h5>
+        <div id="chart7">
+        </div>
+        <script type="text/javascript">
+         var svgGovernance = dimple.newSvg("#chart7", width, height);
+         d3.csv("data/merged_aid.csv", function (data) {
+             var myChart = new dimple.chart(svgGovernance, data);
+             var x = myChart.addMeasureAxis("x", "2003-2012 Governance");
+             // x.overrideMax = 10
+             var y = myChart.addMeasureAxis("y", "2000-2013 Life Expectancy Increase");
+             var z = myChart.addMeasureAxis("z", "2014 Population");
+             myChart.addSeries(["Country","Region"], dimple.plot.bubble);
+             myChart.addLegend(250, 10, 500, 50, "right");
+             myChart.draw();
+         });
+        </script>
+
+        <h5></h5>
+        <div id="chart8">
+        </div>
+        <script type="text/javascript">
+         var svg8 = dimple.newSvg("#chart8", width, height);
+         d3.csv("data/merged_aid.csv", function (data) {
+             var myChart = new dimple.chart(svg8, data);
+             var x = myChart.addMeasureAxis("x", "2003-2012 Health and Population");
+             // x.overrideMax = 10
+             var y = myChart.addMeasureAxis("y", "2000-2013 Life Expectancy Increase");
+             var z = myChart.addMeasureAxis("z", "2014 Population");
+             myChart.addSeries(["Country","Region"], dimple.plot.bubble);
+             myChart.addLegend(250, 10, 500, 50, "right");
+             myChart.draw();
+         });
+        </script>
+
+        <h5></h5>
+        <div id="chart9">
+        </div>
+        <script type="text/javascript">
+         var svg9 = dimple.newSvg("#chart9", width, height);
+         d3.csv("data/merged_aid.csv", function (data) {
+             data = data.filter(function (record) {
+                 var increase = record["2000-2013 Education Index Increase"];
+                 return increase != null && increase != "";
+             });
+
+             var myChart = new dimple.chart(svg9, data);
+             var x = myChart.addMeasureAxis("x", "2003-2012 Education");
+             // x.overrideMax = 10
+             var y = myChart.addMeasureAxis("y", "2000-2013 Education Index Increase");
+             var z = myChart.addMeasureAxis("z", "2014 Population");
+             myChart.addSeries(["Country","Region"], dimple.plot.bubble);
+             myChart.addLegend(250, 10, 500, 50, "right");
+             myChart.draw();
+         });
+        </script>
+
+
       </div>
     </div>
   </div>
