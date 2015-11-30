@@ -30,6 +30,11 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="lib/d3.min.js"></script>
   <script src="lib/dimple.v2.1.6.min.js"></script>
+  <style>
+    .container {
+        max-width: 1200px;
+    }
+  </style>
 
 </head>
 <body>
@@ -45,13 +50,14 @@
         <div id="chart2">
         </div>
         <script type="text/javascript">
-         var svgPie = dimple.newSvg("#chart2", 800, 400);
+         var width = 1200;
+         var height = 800;
+         var svgPie = dimple.newSvg("#chart2", width, height);
          d3.csv("data/totals.csv", function (data) {
              var myChart = new dimple.chart(svgPie, data);
-             myChart.setBounds(20, 20, 460, 360);
              myChart.addMeasureAxis("p", "Cost");
              myChart.addSeries("Category", dimple.plot.pie);
-             myChart.addLegend(500, 20, 90, 300, "left");
+             myChart.addLegend(100, 20, 90, 300, "left");
              myChart.draw();
          });
         </script>
@@ -60,7 +66,7 @@
         <div id="chart3">
         </div>
         <script type="text/javascript">
-         var svgScatter = dimple.newSvg("#chart3", 1000, 700);
+         var svgScatter = dimple.newSvg("#chart3", width, height);
          d3.csv("data/merged_aid.csv", function (data) {
              var myChart = new dimple.chart(svgScatter, data);
              var x = myChart.addMeasureAxis("x", "2012 Mean years of schooling");
@@ -77,7 +83,7 @@
         <div id="chart4">
         </div>
         <script type="text/javascript">
-         var svgHealth = dimple.newSvg("#chart4", 1000, 700);
+         var svgHealth = dimple.newSvg("#chart4", width, height);
          d3.csv("data/merged_aid.csv", function (data) {
              var myChart = new dimple.chart(svgHealth, data);
              var x = myChart.addMeasureAxis("x", "2013 Life Expectancy at Birth (years)");
@@ -97,7 +103,7 @@
         <div id="chart5">
         </div>
         <script type="text/javascript">
-         var svgEconomic = dimple.newSvg("#chart5", 1000, 700);
+         var svgEconomic = dimple.newSvg("#chart5", width, height);
          d3.csv("data/merged_aid.csv", function (data) {
              var myChart = new dimple.chart(svgEconomic, data);
              var x = myChart.addMeasureAxis("x", "2013 Gross national income (GNI) per capita (2011 PPP $)");
