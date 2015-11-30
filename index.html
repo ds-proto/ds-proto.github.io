@@ -117,6 +117,23 @@
              y.titleShape.text("Money Spent on Economic Growth in 2014 ($)");
          });
         </script>
+
+
+        <h4>US Foreign Aid costs from 2003 to 2013</h4>
+        <div id="chart6">
+        </div>
+        <script type="text/javascript">
+         var svgYearTotals = dimple.newSvg("#chart6", width, height);
+         d3.csv("data/year_totals.csv", function (data) {
+             var myChart = new dimple.chart(svgYearTotals, data);
+             var x = myChart.addCategoryAxis("x", "Year");
+             var y = myChart.addMeasureAxis("y", "Cost");
+             var z = myChart.addSeries("Expenditure", dimple.plot.line);
+             myChart.draw();
+             y.titleShape.text("Money Spent on Expenditure ($)");
+         });
+        </script>
+
       </div>
     </div>
   </div>
