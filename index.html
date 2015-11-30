@@ -69,7 +69,7 @@
          var svgScatter = dimple.newSvg("#chart3", width, height);
          d3.csv("data/merged_aid.csv", function (data) {
              var myChart = new dimple.chart(svgScatter, data);
-             var x = myChart.addMeasureAxis("x", "2012 Mean years of schooling");
+             var x = myChart.addMeasureAxis("x", "2013 Mean Years of Schooling");
              var y = myChart.addMeasureAxis("y", "Education");
              var z = myChart.addMeasureAxis("z", "2014 Population");
              myChart.addSeries(["Country","Region"], dimple.plot.bubble);
@@ -86,7 +86,7 @@
          var svgHealth = dimple.newSvg("#chart4", width, height);
          d3.csv("data/merged_aid.csv", function (data) {
              var myChart = new dimple.chart(svgHealth, data);
-             var x = myChart.addMeasureAxis("x", "2013 Life Expectancy at Birth (years)");
+             var x = myChart.addMeasureAxis("x", "2013 Life Expectancy");
              x.overrideMin = 40;
              x.overrideMax = 90;
              var y = myChart.addMeasureAxis("y", "Health and Population");
@@ -106,7 +106,7 @@
          var svgEconomic = dimple.newSvg("#chart5", width, height);
          d3.csv("data/merged_aid.csv", function (data) {
              var myChart = new dimple.chart(svgEconomic, data);
-             var x = myChart.addMeasureAxis("x", "2013 Gross national income (GNI) per capita (2011 PPP $)");
+             var x = myChart.addMeasureAxis("x", "2013 GNI per Capita");
              /* x.overrideMin = 40;
                 x.overrideMax = 90; */
              var y = myChart.addMeasureAxis("y", "Economic Growth");
