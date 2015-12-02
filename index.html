@@ -236,16 +236,18 @@
         <div id="heatmap">
         </div>
         <script type="text/javascript">
-          var heatmap = new Datamap(
-            {
-              element: document.getElementById('heatmap')
-            },
-            fills: {
-              defaultFill: '#ABDDA4',
-              USA: 'blue',
-              RUS: 'red'
-            }
-          );
+          var heatmap = new Datamap({
+              element: document.getElementById('heatmap'),
+              geographyConfig: {
+                popupOnHover: false,
+                highlightOnHover: false
+              },
+              fills: {
+                defaultFill: '#ABDDA4',
+                USA: 'blue',
+                RUS: 'red'
+              }
+          });
           heatmap.bubbles([
             {
               name: 'Castle Bravo',
