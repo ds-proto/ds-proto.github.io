@@ -36,6 +36,30 @@
     }
   </style>
 
+  <script>
+   function createBubble(data,
+                         div_id,
+                         width, height,
+                         x_dim, y_dim, z_dim,
+                         extra_dim,
+                         callback)
+   {
+       var svg = dimple.newSvg(div_id, width, height);
+       d3.csv(data, function (data) {
+           data = data.filter(function (record) {
+               return record[x_dim] != "" && record[y_dim] != "" && record[z_dim] != "";
+           });
+
+           var myChart = new dimple.chart(svg, data);
+           var x = myChart.addMeasureAxis("x", x_dim);
+           var y = myChart.addMeasureAxis("y", y_dim);
+           var z = myChart.addMeasureAxis("z", z_dim);
+           myChart.addSeries(extra_dim, dimple.plot.bubble);
+           myChart.addLegend(250, 10, 500, 50, "right");
+           callback(myChart,x,y,z);
+       });
+   }
+  </script>
 </head>
 <body>
 
@@ -66,36 +90,36 @@
         <div id="chart3">
         </div>
         <script type="text/javascript">
-         var svgScatter = dimple.newSvg("#chart3", width, height);
-         d3.csv("data/merged_aid.csv", function (data) {
-             var myChart = new dimple.chart(svgScatter, data);
-             var x = myChart.addMeasureAxis("x", "2013 Mean Years of Schooling");
-             var y = myChart.addMeasureAxis("y", "Education");
-             var z = myChart.addMeasureAxis("z", "2014 Population");
-             myChart.addSeries(["Country","Region"], dimple.plot.bubble);
-             myChart.addLegend(250, 10, 500, 50, "right");
-             myChart.draw();
-             y.titleShape.text("Money Spent on Education in 2014 ($)");
-         });
+         createBubble("data/merged_aid.csv",
+                      "#chart3",
+                      width,
+                      height,
+                      "2013 Mean Years of Schooling",
+                      "Education",
+                      "2014 Population",
+                      ["Country","Region"],
+                      function (myChart, x, y, z) {
+                          myChart.draw();
+                      });
         </script>
 
         <h4>The US Response to Foreign Health Need</h4>
         <div id="chart4">
         </div>
         <script type="text/javascript">
-         var svgHealth = dimple.newSvg("#chart4", width, height);
-         d3.csv("data/merged_aid.csv", function (data) {
-             var myChart = new dimple.chart(svgHealth, data);
-             var x = myChart.addMeasureAxis("x", "2013 Life Expectancy");
-             x.overrideMin = 40;
-             x.overrideMax = 90;
-             var y = myChart.addMeasureAxis("y", "Health and Population");
-             var z = myChart.addMeasureAxis("z", "2014 Population");
-             myChart.addSeries(["Country","Region"], dimple.plot.bubble);
-             myChart.addLegend(250, 10, 500, 50, "right");
-             myChart.draw();
-             y.titleShape.text("Money Spent on Health and Population in 2014 ($)");
-         });
+         createBubble("data/merged_aid.csv",
+                      "#chart4",
+                      width,
+                      height,
+                      "2013 Life Expectancy",
+                      "Health and Population",
+                      "2014 Population",
+                      ["Country","Region"],
+                      function (myChart, x, y, z) {
+                          x.overrideMin = 40;
+                          x.overrideMax = 90;
+                          myChart.draw();
+                      });
         </script>
 
 
@@ -103,19 +127,17 @@
         <div id="chart5">
         </div>
         <script type="text/javascript">
-         var svgEconomic = dimple.newSvg("#chart5", width, height);
-         d3.csv("data/merged_aid.csv", function (data) {
-             var myChart = new dimple.chart(svgEconomic, data);
-             var x = myChart.addMeasureAxis("x", "2013 GNI per Capita");
-             /* x.overrideMin = 40;
-                x.overrideMax = 90; */
-             var y = myChart.addMeasureAxis("y", "Economic Growth");
-             var z = myChart.addMeasureAxis("z", "2014 Population");
-             myChart.addSeries(["Country","Region"], dimple.plot.bubble);
-             myChart.addLegend(250, 10, 500, 50, "right");
-             myChart.draw();
-             y.titleShape.text("Money Spent on Economic Growth in 2014 ($)");
-         });
+         createBubble("data/merged_aid.csv",
+                      "#chart5",
+                      width,
+                      height,
+                      "2013 GNI per Capita",
+                      "Economic Growth",
+                      "2014 Population",
+                      ["Country","Region"],
+                      function (myChart, x, y, z) {
+                          myChart.draw();
+                      });
         </script>
 
 
@@ -138,56 +160,52 @@
         <div id="chart7">
         </div>
         <script type="text/javascript">
-         var svgGovernance = dimple.newSvg("#chart7", width, height);
-         d3.csv("data/merged_aid.csv", function (data) {
-             var myChart = new dimple.chart(svgGovernance, data);
-             var x = myChart.addMeasureAxis("x", "2003-2012 Governance");
-             // x.overrideMax = 10
-             var y = myChart.addMeasureAxis("y", "2000-2013 Life Expectancy Increase");
-             var z = myChart.addMeasureAxis("z", "2014 Population");
-             myChart.addSeries(["Country","Region"], dimple.plot.bubble);
-             myChart.addLegend(250, 10, 500, 50, "right");
-             myChart.draw();
-         });
+
+         createBubble("data/merged_aid.csv",
+                      "#chart7",
+                      width,
+                      height,
+                      "2003-2012 Governance",
+                      "2000-2013 Life Expectancy Increase",
+                      "2014 Population",
+                      ["Country","Region"],
+                      function (myChart, x, y, z) {
+                          myChart.draw();
+                      });
         </script>
 
         <h5></h5>
         <div id="chart8">
         </div>
         <script type="text/javascript">
-         var svg8 = dimple.newSvg("#chart8", width, height);
-         d3.csv("data/merged_aid.csv", function (data) {
-             var myChart = new dimple.chart(svg8, data);
-             var x = myChart.addMeasureAxis("x", "2003-2012 Health and Population");
-             // x.overrideMax = 10
-             var y = myChart.addMeasureAxis("y", "2000-2013 Life Expectancy Increase");
-             var z = myChart.addMeasureAxis("z", "2014 Population");
-             myChart.addSeries(["Country","Region"], dimple.plot.bubble);
-             myChart.addLegend(250, 10, 500, 50, "right");
-             myChart.draw();
-         });
+         createBubble("data/merged_aid.csv",
+                      "#chart8",
+                      width,
+                      height,
+                      "2003-2012 Health and Population",
+                      "2000-2013 Life Expectancy Increase",
+                      "2014 Population",
+                      ["Country","Region"],
+                      function (myChart, x, y, z) {
+                          myChart.draw();
+                      });
         </script>
 
         <h5></h5>
         <div id="chart9">
         </div>
         <script type="text/javascript">
-         var svg9 = dimple.newSvg("#chart9", width, height);
-         d3.csv("data/merged_aid.csv", function (data) {
-             data = data.filter(function (record) {
-                 var increase = record["2000-2013 Education Index Increase"];
-                 return increase != null && increase != "";
-             });
+         createBubble("data/merged_aid.csv",
+                      "#chart9",
+                      width, height,
+                      "2003-2012 Education",
+                      "2000-2013 Education Index Increase",
+                      "2014 Population",
+                      ["Country","Region"],
+                      function (myChart, x, y, z) {
+                          myChart.draw();
+                      });
 
-             var myChart = new dimple.chart(svg9, data);
-             var x = myChart.addMeasureAxis("x", "2003-2012 Education");
-             // x.overrideMax = 10
-             var y = myChart.addMeasureAxis("y", "2000-2013 Education Index Increase");
-             var z = myChart.addMeasureAxis("z", "2014 Population");
-             myChart.addSeries(["Country","Region"], dimple.plot.bubble);
-             myChart.addLegend(250, 10, 500, 50, "right");
-             myChart.draw();
-         });
         </script>
 
 
