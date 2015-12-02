@@ -4,7 +4,7 @@ import os.path
 
 url = 'https://explorer.usaid.gov/prepared/us_foreign_aid_complete.csv'
 src = 'data/us_foreign_aid_complete.csv'
-dest = 'data/2003_2012_foreign_aid.csv'
+dest = 'data/2000_2014_foreign_aid.csv'
 
 def download_file(url, filename):
     r = requests.get(url, stream=True)
@@ -52,7 +52,7 @@ aid = pd.read_csv(src).drop([
 
 aid = aid[aid.current_amount > 0]
 aid = aid[aid.constant_amount > 0]
-aid = aid[aid.numeric_year >= 2003]
-aid = aid[aid.numeric_year <= 2012]
+aid = aid[aid.numeric_year >= 2000]
+aid = aid[aid.numeric_year <= 2014]
 
 aid.to_csv(dest, index=False)
