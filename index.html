@@ -30,13 +30,8 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="lib/d3.min.js"></script>
   <script src="lib/dimple.v2.1.6.min.js"></script>
-  <script src="lib/datamaps.world.min.js"></script>
   <script src="lib/topojson.min.js"></script>
-  <style>
-    .container {
-        max-width: 1200px;
-    }
-  </style>
+  <script src="lib/datamaps.world.min.js"></script>
 
   <script>
    function createBubble(data,
@@ -64,12 +59,20 @@
   </script>
 </head>
 <body>
-
+  <h4>Some sort of heat map</h4>
+  <div style="width: 960px; height: 685px" id="basic">
+  </div>
+  <script type="text/javascript">
+   
+   var basic = new Datamap({
+       element: document.getElementById("basic")
+   });
+  </script>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
     <div class="row">
-      <div style="margin-top: 25%">
+      <div style="margin-top: 10%">
         <h3>Analyzing Government Aid</h3>
         <p>
           Is there a connection between the US government's spending in foreign
@@ -232,51 +235,6 @@
         </script>
 
 
-        <h4>Some sort of heat map</h4>
-        <div id="heatmap">
-        </div>
-        <script type="text/javascript">
-          var heatmap = new Datamap({
-              element: document.getElementById('heatmap'),
-              geographyConfig: {
-                popupOnHover: false,
-                highlightOnHover: false
-              },
-              fills: {
-                defaultFill: '#ABDDA4',
-                USA: 'blue',
-                RUS: 'red'
-              }
-          });
-          heatmap.bubbles([
-            {
-              name: 'Castle Bravo',
-              radius: 25,
-              yeild: 15000,
-              country: 'USA',
-              significance: 'First dry fusion fuel "staged" thermonuclear weapon; a serious nuclear fallout accident occurred',
-              fillKey: 'USA',
-              date: '1954-03-01',
-              latitude: 11.415,
-              longitude: 165.1619
-            },{
-              name: 'Tsar Bomba',
-              radius: 70,
-              yeild: 50000,
-              country: 'USSR',
-              fillKey: 'RUS',
-              significance: 'Largest thermonuclear weapon ever tested—scaled down from its initial 100 Mt design by 50%',
-              date: '1961-10-31',
-              latitude: 73.482,
-              longitude: 54.5854
-            }
-          ], {
-            popupTemplate: function(geo, data) {
-              return '<div class="hoverinfo">Yield:' + data.yeild + 
-              'Exploded on ' + data.date + ' by the'  + data.country + ''
-            }
-          });
-        </script>
       </div>
     </div>
   </div>
