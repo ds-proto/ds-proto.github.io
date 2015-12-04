@@ -41,7 +41,11 @@
                          extra_dim,
                          callback)
    {
-       var svg = dimple.newSvg(div_id, width, height);
+       var div = document.getElementById(div_id);
+       while (div.firstChild) {
+           div.removeChild(div.firstChild);
+       }
+       var svg = dimple.newSvg('#' + div_id, width, height);
        d3.csv(data, function (data) {
            data = data.filter(function (record) {
                return record[x_dim] != "" && record[y_dim] != "" && record[z_dim] != "";
@@ -116,7 +120,7 @@
         </div>
         <script type="text/javascript">
          createBubble("data/merged_aid.csv",
-                      "#chart3",
+                      "chart3",
                       width,
                       height,
                       "2013 Mean Years of Schooling",
@@ -133,7 +137,7 @@
         </div>
         <script type="text/javascript">
          createBubble("data/merged_aid.csv",
-                      "#chart4",
+                      "chart4",
                       width,
                       height,
                       "2013 Life Expectancy",
@@ -153,7 +157,7 @@
         </div>
         <script type="text/javascript">
          createBubble("data/merged_aid.csv",
-                      "#chart5",
+                      "chart5",
                       width,
                       height,
                       "2013 GNI per Capita",
@@ -186,9 +190,8 @@
         <div id="chart7">
         </div>
         <script type="text/javascript">
-
          createBubble("data/merged_aid.csv",
-                      "#chart7",
+                      "chart7",
                       width,
                       height,
                       "2003-2012 Governance",
@@ -205,7 +208,7 @@
         </div>
         <script type="text/javascript">
          createBubble("data/merged_aid.csv",
-                      "#chart8",
+                      "chart8",
                       width,
                       height,
                       "2003-2012 Health and Population",
@@ -222,7 +225,7 @@
         </div>
         <script type="text/javascript">
          createBubble("data/merged_aid.csv",
-                      "#chart9",
+                      "chart9",
                       width, height,
                       "2003-2012 Education",
                       "2000-2013 Education Index Increase",
@@ -233,7 +236,6 @@
                       });
 
         </script>
-
 
       </div>
     </div>
