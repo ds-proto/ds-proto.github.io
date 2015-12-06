@@ -7,6 +7,7 @@
 }
 
 .menu li {
+    color: #222;
     list-style-type: none;
     cursor: pointer; cursor: hand;
 }
@@ -16,6 +17,6 @@
 }
 
 .menu li.selected {
-    font-weight: bold;
+    color: #000;
     background-color: #BBB;
 }
