@@ -1,0 +1,21 @@
+.container {
+  max-width: 1200px;
+}
+
+.menu {
+    margin-top: 25%;
+}
+
+.menu li {
+    list-style-type: none;
+    cursor: pointer; cursor: hand;
+}
+
+.menu li:hover {
+    background-color: #DDD;
+}
+
+.menu li.selected {
+    font-weight: bold;
+    background-color: #BBB;
+}
