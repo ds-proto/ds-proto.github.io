@@ -85,77 +85,21 @@
          });
         </script>
 
-        <h4>Did the US expenditure on Foreign Aid Improve Human Development</h4>
+        <h4>The US Response to Foreign Need</h4>
         <div class="row">
           <div class="two columns">
             <div class="menu">
-              <ul id="predictor-list">
+              <ul id="instant-predictor-list">
               </ul>
-              <ul id="response-list">
+              <ul id="instant-response-list">
               </ul>
             </div>
           </div>
           <div class="nine columns">
-            <div id="main-chart">
+            <div id="instant-main-chart">
             </div>
           </div>
         </div>
-
-
-        <h4>The US Response to Foreign Education Need</h4>
-        <div id="chart3">
-        </div>
-        <script type="text/javascript">
-         createBubble("data/merged_aid.csv",
-                      "chart3",
-                      width,
-                      height,
-                      "2013 Mean Years of Schooling",
-                      "Education",
-                      "2014 Population",
-                      ["Country","Region"],
-                      function (myChart, data, x, y, z) {
-                          myChart.draw();
-                      });
-        </script>
-
-        <h4>The US Response to Foreign Health Need</h4>
-        <div id="chart4">
-        </div>
-        <script type="text/javascript">
-         createBubble("data/merged_aid.csv",
-                      "chart4",
-                      width,
-                      height,
-                      "2013 Life Expectancy",
-                      "Health and Population",
-                      "2014 Population",
-                      ["Country","Region"],
-                      function (myChart, data, x, y, z) {
-                          x.overrideMin = 40;
-                          x.overrideMax = 90;
-                          myChart.draw();
-                      });
-        </script>
-
-
-        <h4>The US Response to Foreign Economic Need</h4>
-        <div id="chart5">
-        </div>
-        <script type="text/javascript">
-         createBubble("data/merged_aid.csv",
-                      "chart5",
-                      width,
-                      height,
-                      "2013 GNI per Capita",
-                      "Economic Growth",
-                      "2014 Population",
-                      ["Country","Region"],
-                      function (myChart, data, x, y, z) {
-                          myChart.draw();
-                      });
-        </script>
-
 
         <h4>US Foreign Aid costs from 2003 to 2013</h4>
         <div id="chart6">
@@ -171,6 +115,22 @@
              y.titleShape.text("Money Spent on Expenditure ($)");
          });
         </script>
+
+        <h4>Did the US expenditure on Foreign Aid Improve Human Development</h4>
+        <div class="row">
+          <div class="two columns">
+            <div class="menu">
+              <ul id="span-predictor-list">
+              </ul>
+              <ul id="span-response-list">
+              </ul>
+            </div>
+          </div>
+          <div class="nine columns">
+            <div id="span-main-chart">
+            </div>
+          </div>
+        </div>
 
       </div>
   </div>

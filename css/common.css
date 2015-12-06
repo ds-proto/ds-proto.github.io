@@ -13,10 +13,10 @@
 }
 
 .menu li:hover {
-    background-color: #DDD;
+    background-color: #EEE;
 }
 
 .menu li.selected {
     color: #000;
-    background-color: #BBB;
+    background-color: #CCC;
 }
