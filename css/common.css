@@ -4,9 +4,12 @@
 
 .menu {
     margin-top: 25%;
+    border-bottom: 5px;
 }
 
 .menu li {
+    padding-left: 3px;
+    font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
     color: #222;
     list-style-type: none;
     cursor: pointer; cursor: hand;
@@ -18,5 +21,5 @@
 
 .menu li.selected {
     color: #000;
-    background-color: #CCC;
+    background-color: #DADADA;
 }
