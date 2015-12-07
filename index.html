@@ -109,88 +109,87 @@
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
-    <div style="margin-top: 10%">
-      <h3>Analyzing Government Aid</h3>
-      <p>
-        Is there a connection between the US government's spending in foreign
-        countries and human development? Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit. Donec vulputate ligula quis bibendum
-        laoreet. Nam pellentesque neque lorem, sit amet rhoncus odio efficitur
-        vel. Aenean venenatis fermentum purus a commodo. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Donec tempus ante id nulla
-        dignissim, sed hendrerit tellus pulvinar. Curabitur dictum hendrerit
-        iaculis. Duis ex elit, tincidunt et scelerisque nec, rutrum vitae
-        nulla.
-      </p>
-      <h4>About The Data</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-      vulputate ligula quis bibendum laoreet. Nam pellentesque neque lorem,
-      sit amet rhoncus odio efficitur vel. Aenean venenatis fermentum purus a
-      commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-      Donec tempus ante id nulla dignissim, sed hendrerit tellus pulvinar.
-      Curabitur dictum hendrerit iaculis. Duis ex elit, tincidunt et
-      scelerisque nec, rutrum vitae nulla. </p>
+      <div style="margin-top: 10%">
+        <h3>Analyzing Government Aid</h3>
+        <p>
+          Is there a connection between the US government's spending in foreign
+          countries and human development?  The US government focuses spending 
+		      on alleviating suffering in struggling countries. This leads to a 
+		      negative correlation between government spending and quality of life 
+		      scores as struggling countries will predictably have lower scores. 
+		      While we could not predict how much worse those scores would be if the
+		      US was to cut funding, we can pinpoint countries that are severely 
+		      lacking and underfunded.
+        </p>
+        <h4>About The Data</h4>
+        <p>We used two data sets : US Foreign Aid and UN Human Development Reports.
+		      The US Foreign Aid data was compiled by the US government and contains 
+		      the records for foreign aid transactions from 1946 to present. The UN
+		      Human Development Reports were compiled by the United Nations and contains
+		      metrics on each country’s well-being and quality of life.  </p>
 
-      <h4>Where the US Spent Money on Foreign Aid in 2014</h4>
+        <h4>US Foreign Aid costs from 2000 to 2014</h4>
+        <div id="chart6">
+        </div>
+        <script type="text/javascript">
+         var svgYearTotals = dimple.newSvg("#chart6", width, height);
+         d3.csv("data/year_totals.csv", function (data) {
+             var myChart = new dimple.chart(svgYearTotals, data);
+             var x = myChart.addCategoryAxis("x", "Year");
+             var y = myChart.addMeasureAxis("y", "Cost");
+             var z = myChart.addSeries("Expenditure", dimple.plot.line);
+             myChart.defaultColors = opaqueColors(appstate.defaultColors);
+             myChart.addLegend(width - 100, 20, 90, 300, "right");
+             myChart.draw();
+             y.titleShape.text("Money Spent on Expenditure ($)");
+         });
+        </script>
 
-      <div id="chart2">
-      </div>
-      <script type="text/javascript">
-       var svgPie = dimple.newSvg("#chart2", width, height);
-       d3.csv("data/totals.csv", function (data) {
-           var myChart = new dimple.chart(svgPie, data);
-           myChart.addMeasureAxis("p", "Cost");
-           myChart.addSeries("Category", dimple.plot.pie);
-           myChart.addLegend(0, 20, 90, 300, "left");
-           myChart.draw();
-       });
-      </script>
-
-      <h4>The US Response to Foreign Need</h4>
-      <div class="row">
-        <div class="two columns">
-          <div class="menu">
-            <ul id="instant-predictor-list">
-            </ul>
-            <ul id="instant-response-list">
-            </ul>
+        <h4>Did the US expenditure on Foreign Aid Improve Human Development</h4>
+        <div class="row">
+          <div class="two columns">
+            <div class="menu">
+              <ul id="span-predictor-list">
+              </ul>
+              <ul id="span-response-list">
+              </ul>
+            </div>
+          </div>
+          <div class="nine columns">
+            <div id="span-main-chart">
+            </div>
           </div>
         </div>
-        <div class="nine columns">
-          <div id="instant-main-chart">
-          </div>
-        </div>
       </div>
 
-      <h4>US Foreign Aid costs from 2003 to 2013</h4>
-      <div id="chart6">
-      </div>
-      <script type="text/javascript">
-       var svgYearTotals = dimple.newSvg("#chart6", width, height);
-       d3.csv("data/year_totals.csv", function (data) {
-           var myChart = new dimple.chart(svgYearTotals, data);
-           var x = myChart.addCategoryAxis("x", "Year");
-           var y = myChart.addMeasureAxis("y", "Cost");
-           var z = myChart.addSeries("Expenditure", dimple.plot.line);
-           myChart.defaultColors = opaqueColors(appstate.defaultColors);
-           myChart.addLegend(width - 100, 20, 90, 300, "right");
-           myChart.draw();
-           y.titleShape.text("Money Spent on Expenditure ($)");
-       });
-      </script>
+        <h4>Where the US Spent Money on Foreign Aid in 2014</h4>
 
-      <h4>Did the US expenditure on Foreign Aid Improve Human Development</h4>
-      <div class="row">
-        <div class="two columns">
-          <div class="menu">
-            <ul id="span-predictor-list">
-            </ul>
-            <ul id="span-response-list">
-            </ul>
-          </div>
+        <div id="chart2">
         </div>
-        <div class="nine columns">
-          <div id="span-main-chart">
+        <script type="text/javascript">
+         var svgPie = dimple.newSvg("#chart2", width, height);
+         d3.csv("data/totals.csv", function (data) {
+             var myChart = new dimple.chart(svgPie, data);
+             myChart.addMeasureAxis("p", "Cost");
+             myChart.addSeries("Category", dimple.plot.pie);
+             myChart.addLegend(0, 20, 90, 300, "left");
+             myChart.draw();
+         });
+        </script>
+
+        <h4>The US Response to Foreign Need</h4>
+        <div class="row">
+          <div class="two columns">
+            <div class="menu">
+              <ul id="instant-predictor-list">
+              </ul>
+              <ul id="instant-response-list">
+              </ul>
+            </div>
+          </div>
+          <div class="nine columns">
+            <div id="instant-main-chart">
+            </div>
           </div>
         </div>
       </div>
