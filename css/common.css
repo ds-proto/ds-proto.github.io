@@ -23,3 +23,8 @@
     color: #000;
     background-color: #DADADA;
 }
+
+.list-heading {
+    font-weight: bold;
+    margin-bottom: .5em;
+}

@@ -30,175 +30,115 @@
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
 
   <!-- Scripts
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="lib/d3.min.js"></script>
   <script src="lib/dimple.v2.1.6.min.js"></script>
   <script src="lib/topojson.min.js"></script>
-  <script src="lib/datamaps.world.min.js"></script>
+  <script src="lib/datamaps.world.js"></script>
   <script src="lib/common.js"></script>
-
 </head>
 <body>
-  <h4>Some sort of heat map</h4>
-  <div style="width: 960px; height: 685px" id="heatmap">
+  <h4>US Foreign Aid Expenditures Across the Globe</h4>
+  <div style="width: 960px; height: 685px; position: relative;" id="heatmap">
   </div>
-  <script type="text/javascript">
-   // var bubble_map = new Datamap({
-   //    element: document.getElementById("basic"),
-   //    geographyConfig: {
-   //      popupOnHover: false,
-   //      highlightOnHover: false
-   //    },
-   //    fills: {
-   //      defaultFill: '#ABDDA4',
-   //      USA: 'blue',
-   //      RUS: 'red'
-   //    }
-   //  });
-   //  bubble_map.bubbles([
-   //    {
-   //      name: 'Castle Bravo',
-   //      radius: 25,
-   //      yeild: 15000,
-   //      country: 'USA',
-   //      significance: 'First dry fusion fuel "staged" thermonuclear weapon; a serious nuclear fallout accident occurred',
-   //      fillKey: 'USA',
-   //      date: '1954-03-01',
-   //      latitude: 11.415,
-   //      longitude: 165.1619
-   //    },{
-   //      name: 'Tsar Bomba',
-   //      radius: 70,
-   //      yeild: 50000,
-   //      country: 'USSR',
-   //      fillKey: 'RUS',
-   //      significance: 'Largest thermonuclear weapon ever tested—scaled down from its initial 100 Mt design by 50%',
-   //      date: '1961-10-31',
-   //      latitude: 73.482,
-   //      longitude: 54.5854
-   //    }
-   //  ], {
-   //    popupTemplate: function(geo, data) {
-   //      return '<div class="hoverinfo">Yield:' + data.yeild +
-   //  '\nExploded on ' + data.date + ' by the'  + data.country + ''
-   //    }
-   //  });
-    var basic_choropleth = new Datamap({
-      element: document.getElementById("heatmap"),
-      fills: {
-        defaultFill: "#ABDDA4",
-        authorHasTraveledTo: "#fa0fa0"
-      },
-      data: {
-        USA: { fillKey: "authorHasTraveledTo" },
-        JPN: { fillKey: "authorHasTraveledTo" },
-        ITA: { fillKey: "authorHasTraveledTo" },
-        CRI: { fillKey: "authorHasTraveledTo" },
-        KOR: { fillKey: "authorHasTraveledTo" },
-        DEU: { fillKey: "authorHasTraveledTo" },
-      }
-    });
-
-    var colors = d3.scale.category10();
-
-    
-  </script>
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container">
-      <div style="margin-top: 10%">
-        <h3>Analyzing Government Aid</h3>
-        <p>
-          Is there a connection between the US government's spending in foreign
-          countries and human development?  The US government focuses spending 
-		      on alleviating suffering in struggling countries. This leads to a 
-		      negative correlation between government spending and quality of life 
-		      scores as struggling countries will predictably have lower scores. 
-		      While we could not predict how much worse those scores would be if the
-		      US was to cut funding, we can pinpoint countries that are severely 
-		      lacking and underfunded.
-        </p>
-        <h4>About The Data</h4>
-        <p>We used two data sets : US Foreign Aid and UN Human Development Reports.
-		      The US Foreign Aid data was compiled by the US government and contains 
-		      the records for foreign aid transactions from 1946 to present. The UN
-		      Human Development Reports were compiled by the United Nations and contains
-		      metrics on each country’s well-being and quality of life.  </p>
+    <div style="margin-top: 10%">
+      <h3>Analyzing Government Aid</h3>
+      <p>
+        Is there a connection between the US government's spending in foreign
+        countries and human development?  The US government focuses spending 
+	      on alleviating suffering in struggling countries. This leads to a 
+	      negative correlation between government spending and quality of life 
+	      scores as struggling countries will predictably have lower scores. 
+	      While we could not predict how much worse those scores would be if the
+	      US was to cut funding, we can pinpoint countries that are severely 
+	      lacking and underfunded.
+      </p>
+      <h4>About The Data</h4>
+      <p>We used two data sets : US Foreign Aid and UN Human Development Reports.
+	      The US Foreign Aid data was compiled by the US government and contains 
+	      the records for foreign aid transactions from 1946 to present. The UN
+	      Human Development Reports were compiled by the United Nations and contains
+	      metrics on each country’s well-being and quality of life.  </p>
 
-        <h4>US Foreign Aid costs from 2000 to 2014</h4>
-        <div id="chart6">
-        </div>
-        <script type="text/javascript">
-         var svgYearTotals = dimple.newSvg("#chart6", width, height);
-         d3.csv("data/year_totals.csv", function (data) {
-             var myChart = new dimple.chart(svgYearTotals, data);
-             var x = myChart.addCategoryAxis("x", "Year");
-             var y = myChart.addMeasureAxis("y", "Cost");
-             var z = myChart.addSeries("Expenditure", dimple.plot.line);
-             myChart.defaultColors = opaqueColors(appstate.defaultColors);
-             myChart.addLegend(width - 100, 20, 90, 300, "right");
-             myChart.draw();
-             y.titleShape.text("Money Spent on Expenditure ($)");
-         });
-        </script>
+      <h4>US Foreign Aid costs from 2000 to 2014</h4>
+      <div id="chart6">
+      </div>
+      <script type="text/javascript">
+       var svgYearTotals = dimple.newSvg("#chart6", width, height);
+       d3.csv("data/year_totals.csv", function (data) {
+           var myChart = new dimple.chart(svgYearTotals, data);
+           var x = myChart.addCategoryAxis("x", "Year");
+           var y = myChart.addMeasureAxis("y", "Cost");
+           var z = myChart.addSeries("Expenditure", dimple.plot.line);
+           myChart.defaultColors = opaqueColors(appstate.defaultColors);
+           myChart.addLegend(width - 100, 20, 90, 300, "right");
+           myChart.draw();
+           y.titleShape.text("Money Spent ($)");
+       });
+      </script>
 
-        <h4>Did the US expenditure on Foreign Aid Improve Human Development</h4>
-        <div class="row">
-          <div class="two columns">
-            <div class="menu">
-              <ul id="span-predictor-list">
-              </ul>
-              <ul id="span-response-list">
-              </ul>
-            </div>
+      <h4>Did US expenditures on Foreign Aid Improve Human Development?</h4>
+      <h5>Total Expenditures 2000-2014</h5>
+      <div class="row">
+        <div class="two columns">
+          <div class="menu">
+            <h6 class="list-heading">Category</h6>
+            <ul id="span-predictor-list">
+            </ul>
+            <h6 class="list-heading">Indicator</h6>
+            <ul id="span-response-list">
+            </ul>
           </div>
-          <div class="nine columns">
-            <div id="span-main-chart">
-            </div>
+        </div>
+        <div class="nine columns">
+          <div id="span-main-chart">
           </div>
         </div>
       </div>
-
-        <h4>Where the US Spent Money on Foreign Aid in 2014</h4>
-
-        <div id="chart2">
-        </div>
-        <script type="text/javascript">
-         var svgPie = dimple.newSvg("#chart2", width, height);
-         d3.csv("data/totals.csv", function (data) {
-             var myChart = new dimple.chart(svgPie, data);
-             myChart.addMeasureAxis("p", "Cost");
-             myChart.addSeries("Category", dimple.plot.pie);
-             myChart.addLegend(0, 20, 90, 300, "left");
-             myChart.draw();
-         });
-        </script>
-
-        <h4>The US Response to Foreign Need</h4>
-        <div class="row">
-          <div class="two columns">
-            <div class="menu">
-              <ul id="instant-predictor-list">
-              </ul>
-              <ul id="instant-response-list">
-              </ul>
-            </div>
-          </div>
-          <div class="nine columns">
-            <div id="instant-main-chart">
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </div>
+
+    <h4>Where the US Spent Money on Foreign Aid in 2014</h4>
+
+    <div id="chart2">
+    </div>
+    <script type="text/javascript">
+     var svgPie = dimple.newSvg("#chart2", width, height);
+     d3.csv("data/totals.csv", function (data) {
+         var myChart = new dimple.chart(svgPie, data);
+         myChart.addMeasureAxis("p", "Cost");
+         myChart.addSeries("Category", dimple.plot.pie);
+         myChart.addLegend(0, 20, 90, 300, "left");
+         myChart.draw();
+     });
+    </script>
+
+    <h4>The US Response to Foreign Need</h4>
+    <div class="row">
+      <div class="two columns">
+        <div class="menu">
+          <ul id="instant-predictor-list">
+          </ul>
+          <ul id="instant-response-list">
+          </ul>
+        </div>
+      </div>
+      <div class="nine columns">
+        <div id="instant-main-chart">
+        </div>
+      </div>
+    </div>
+    <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+  </div> <!-- end container -->
 
   <script type="text/javascript">
    init(appstate);
+   createMap();
   </script>
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
