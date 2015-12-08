@@ -28,3 +28,9 @@
     font-weight: bold;
     margin-bottom: .5em;
 }
+
+#heatmap {
+    width: 1200px;
+    height: 800px;
+    position: relative;
+}
