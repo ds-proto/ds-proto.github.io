@@ -10,6 +10,7 @@
 .menu li {
     padding-left: 3px;
     font-family: "HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 0.85em;
     color: #222;
     list-style-type: none;
     cursor: pointer; cursor: hand;
